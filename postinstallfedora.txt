@@ -1,0 +1,57 @@
+# Downloads pararelos
+
+sudo nano /etc/dnf/dnf.conf
+max_parallel_downloads=10
+fastestmirror=True
+
+# Instalar o rpmfusion
+
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
+
+# Corrigir os problemas de codec
+sudo dnf swap ffmpeg-free ffmpeg --allowerasing -y
+sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin -y
+sudo dnf groupupdate sound-and-video -y
+sudo dnf install amrnb amrwb faad2 flac gpac-libs lame libde265 libfc14audiodecoder mencoder x264 x265 ffmpegthumbnailer -y
+
+# Instalar o GNOME Tweaks para configurar o botão de minimizar
+sudo dnf install gnome-tweaks -y
+
+# Instalar as fontes da Microsoft
+sudo dnf install https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm -y
+
+# Instalar ferramentas para jogos
+sudo dnf in steam lutris gamescope
+flatpak install flathub com.steamgriddb.steam-rom-manager
+flatpak install flathub com.steamgriddb.SGDBoop
+flatpak install flathub com.heroicgameslauncher.hgl
+protonplus
+
+# Instalar aplicativos em flatpak
+flatpak install flathub com.discordapp.Discord
+flatpak install flathub com.spotify.Client
+flatpak install flathub com.obsproject.Studio
+flatpak install flathub io.github.celluloid_player.Celluloid
+flatpak install flathub com.mattjakeman.ExtensionManager
+flatpak install flathub org.localsend.localsend_app
+flatpak install flathub org.telegram.desktop
+
+# Editor de texto
+sudo dnf install neovim
+sudo dnf in dconf-editor
+
+# Pcismo
+Mission Center
+sudo dnf copr enable ilyaz/LACT
+sudo dnf install lact
+sudo systemctl enable --now lactd
+sudo dnf install lm-sensors
+sudo sensors-detect
+sudo dnf install mangohud
+flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
+dnf install goverlay
+
+
+
+
