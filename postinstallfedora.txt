@@ -15,18 +15,27 @@ sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=Pack
 sudo dnf groupupdate sound-and-video -y
 sudo dnf install amrnb amrwb faad2 flac gpac-libs lame libde265 libfc14audiodecoder mencoder x264 x265 ffmpegthumbnailer -y
 
-# Instalar o GNOME Tweaks para configurar o botão de minimizar
+# Instalar ferramentas para o sistema
 sudo dnf install gnome-tweaks -y
+sudo dnf install pavucontrol -y
 
 # Instalar as fontes da Microsoft
 sudo dnf install https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm -y
 
-# Instalar ferramentas para jogos
-sudo dnf in steam lutris gamescope
+# Personalização do sistema
+sudo dnf install papirus-icon-theme
+papirus-folders -C violet
+
+
+# Instalar jogos e ferramentas para jogos
+sudo dnf in steam lutris gamescope winetricks -y
 flatpak install flathub com.steamgriddb.steam-rom-manager
 flatpak install flathub com.steamgriddb.SGDBoop
 flatpak install flathub com.heroicgameslauncher.hgl
-protonplus
+flatpak install flatbub io.mrarm.mcpelauncher
+flatpak install com.vysp3r.ProtonPlus
+flatpak install com.mojang.Minecraft
+flatpak install org.prismlauncher.PrismLauncher
 
 # Instalar aplicativos em flatpak
 flatpak install flathub com.discordapp.Discord
@@ -36,22 +45,34 @@ flatpak install flathub io.github.celluloid_player.Celluloid
 flatpak install flathub com.mattjakeman.ExtensionManager
 flatpak install flathub org.localsend.localsend_app
 flatpak install flathub org.telegram.desktop
+flatpak install md.obsidian.Obsidian
+flatpak install io.missioncenter.MissionCenter
+flatpak install com.mattjakeman.ExtensionManager
+flatpak install com.brave.Browser
+flatpak install io.github.celluloid_player.Celluloid
+flatpak install io.github.celluloid_player.Celluloid
+flatpak install com.github.unrud.VideoDownloader
+flatpak install flathub com.github.xournalpp.xournalpp
 
 # Editor de texto
-sudo dnf install neovim
-sudo dnf in dconf-editor
+sudo dnf install neovim -y
+sudo dnf in dconf-editor -y
 
 # Pcismo
-Mission Center
-sudo dnf copr enable ilyaz/LACT
-sudo dnf install lact
+sudo dnf copr enable ilyaz/LACT -y
+sudo dnf install lact -y
 sudo systemctl enable --now lactd
-sudo dnf install lm-sensors
-sudo sensors-detect
+
+sudo dnf install lm-sensors -y
+sudo sensors-detect -y
+
 sudo dnf install mangohud
 flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
-dnf install goverlay
 
+sudo dnf copr enable lizardbyte/beta -y
+sudo dnf install Sunshine -y
 
-
-
+sudo dnf install goverlay -y
+sudo dnf install htop -y
+sudo dnf install btop -y
+sudo dnf install cpu-x -y
